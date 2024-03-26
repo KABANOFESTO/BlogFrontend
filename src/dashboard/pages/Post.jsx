@@ -82,6 +82,12 @@ export default function Post() {
             <div className="title-container">
               <div>
                 <h1 className="title">Manage All Posts</h1>
+                <Link to={`/addvideo/`}>
+  <button style={{ margin: '0.2cm', border: '1px solid orange',color:'orange', backgroundColor: 'whitesmoke', padding: '0.1cm', borderRadius: '4px' }}>
+    <p>add video post</p>
+  </button>
+</Link>
+
               </div>
               <div className="search-form">
                 <input type="text" placeholder="search..." />

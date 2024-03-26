@@ -24,7 +24,7 @@ function EditPost() {
   };
 
   const success = () => {
-    toast.success("Post updated successfully", {
+    toast.success("Post added successfully", {
       position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
@@ -83,7 +83,7 @@ function EditPost() {
     <div className="edit-section container-section">
       <div className="modalContainer">
         <div className="modal-title">
-          <h2>Edit post here!</h2>
+          <h2>create video post here!</h2>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="modal-body">

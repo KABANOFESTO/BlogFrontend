@@ -239,9 +239,9 @@ const isVideo = (url) => {
               <iconify-icon icon="eva:arrow-forward-fill"></iconify-icon>
             </div>
             <div>
-              <Link to={`/BlogSingle/${Id}`}>
-                <p id="readmoree">Read more</p>
-              </Link>
+            <Link to={`/blogSingle/${Id}?video=${encodeURIComponent(image)}`}>
+  <p id="readmoree">Read more</p>
+</Link>
               <ToastContainer /> 
             </div>
           </div>

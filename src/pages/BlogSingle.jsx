@@ -7,6 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import "../components/style/BlogSingle.css";
 import Cavatar from "../Images/commetor-avatar.png";
+import {  useLocation } from "react-router-dom";
+
 
 const BlogSingle = () => {
   const { id } = useParams();
@@ -15,6 +17,10 @@ const BlogSingle = () => {
   const [commentBody, setcommentBody] = useState("");
   const [comments, Setcomments] = useState([])
   // console.log("commentBody", commentBody);
+  const { search } = useLocation();
+  const queryParams = new URLSearchParams(search);
+  const video = queryParams.get("video");
+
 
   // ===================== alerts ==========================
   const errors = () => {
@@ -153,10 +159,10 @@ const BlogSingle = () => {
         
         ) : (
           <div className="video-container">
-            <video style={{ width: '100%', maxWidth: '100%', height: 'auto' }} controls>
-              <source src={blogData.postImage} />
-              Your browser does not support the video tag.
-            </video>
+           <video style={{ width: '100%', maxWidth: '100%', height: 'auto' }} controls>
+  <source src={video} type="video/mp4"/>
+  Your browser does not support the video tag.
+</video>
           </div>
         )}
           </div>
@@ -213,7 +219,7 @@ const BlogSingle = () => {
           </div>
 
           <div className="comment-section-wrap">
-            <h3>{comments.length} Comments</h3>
+            <h3>{comments.length} Comments </h3>
             {Array.isArray(comments) && comments.length > 0 ? (
               <ul className="comment-list">
                 {comments.map((comments, index) => (
