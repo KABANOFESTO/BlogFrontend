@@ -72,6 +72,7 @@
 .send-btn:hover {
   opacity: 0.7;
 }
+
 /* ====================== Responsiveness for Mobile Devices ==================== */
 @media screen and (max-width: 769px) {
   .contact-title h1 {

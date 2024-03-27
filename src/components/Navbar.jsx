@@ -29,20 +29,20 @@ class Navbar extends Component {
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="tag">
-                  Contact
+                <Link to="/blogs" className="tag">
+                  Blogs
                 </Link>
               </li>
               <li>
-                <Link to="/blogs" className="tag">
-                  Blogs
+                <Link to="/contact" className="tag">
+                  Contact
                 </Link>
               </li>
             </ul>
           </div>
           <div>
             <Link to="/login">
-              <button className="btn login">Join us</button>
+              <button className="btn login">Join Me</button>
             </Link>
           </div>
           <div id="mobile" onClick={this.handleClick}>

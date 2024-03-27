@@ -11,7 +11,7 @@ export default function Contact() {
           </div>
           <div className="contact-content">
             <div className="address">
-              <p>Address:  Kigali/Kicukiro</p>
+              <p>Address:  Kigali/Kacyiru</p>
             </div>
             <div>
               <p>

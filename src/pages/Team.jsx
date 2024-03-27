@@ -1,7 +1,7 @@
 import HeroPage from "../components/HeroPage";
 import { useState } from "react";
 // import video1 from "../Images/abaut.jpg";
-import Image from "../Images/about.jpg";
+import Image from "../Images/picv.jpg";
 import "../components/style/about.css";
 export default function Team() {
   const [paragraphy, setParagraphy] = useState(
@@ -51,9 +51,9 @@ export default function Team() {
             </div>
             <div className="tabulation">
               <ul>
-                <li onClick={handleMission}>Our Mission</li>
-                <li onClick={handleVision}>Our Vision</li>
-                <li onClick={handleValue}>Our Value</li>
+                <li onClick={handleMission}>My Mission</li>
+                <li onClick={handleVision}>My Vision</li>
+                <li onClick={handleValue}>My Value</li>
               </ul>
             </div>
             <div className="tab-content">

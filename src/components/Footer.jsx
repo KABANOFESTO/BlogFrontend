@@ -9,39 +9,46 @@ export default function Footer() {
             <div className="readit">
               <div className="title">
                 <h4 className="mark">
-                Visit Me<span className="span"> Daily</span>.
+                  Visit Me<span className="span"> Daily</span>.
                 </h4>
               </div>
               <div className="readit-body">
-                <p style={{textAlign:""}}>
-                We're delighted to have you here.
-                 Whether you're exploring our 
-                 latest blog posts or seeking 
-                 valuable insights, we hope your 
-                 journey with us is both 
-                 informative and enjoyable. 
+                <p style={{ textAlign: "" }}>
+                  We're delighted to have you here.
+                  Whether you're exploring our
+                  latest blog posts or seeking
+                  valuable insights, we hope your
+                  journey with us is both
+                  informative and enjoyable.
                 </p>
               </div>
               <div className="readit-footer">
                 <div className="f-social-icons">
                   <div className="twitter">
-                    <a href="#">
+                    <a href="https://twitter.com/MaureenUmwiza1">
                       <span>
                         <iconify-icon icon="ri:twitter-fill"></iconify-icon>
                       </span>
                     </a>
                   </div>
                   <div className="facebook">
-                    <a href="#">
+                    <a href="https://web.facebook.com/maureen.kalala.9?locale=hi_IN">
                       <span>
                         <iconify-icon icon="ri:facebook-fill"></iconify-icon>
                       </span>
                     </a>
                   </div>
                   <div className="instagram">
-                    <a href="#">
+                    <a href="https://www.instagram.com/maureekalala/">
                       <span>
                         <iconify-icon icon="bi:instagram"></iconify-icon>
+                      </span>
+                    </a>
+                  </div>
+                  <div className="youtube">
+                    <a href="#">
+                      <span>
+                      <iconify-icon icon="bi:youtube"></iconify-icon>
                       </span>
                     </a>
                   </div>
@@ -86,16 +93,7 @@ export default function Footer() {
                       <span>
                         <iconify-icon icon="grommet-icons:form-next"></iconify-icon>
                       </span>{" "}
-                      Join us
-                    </Link>
-                  </li>
-                  <li className="tag">
-                    <Link to="/contact">
-                      {" "}
-                      <span>
-                        <iconify-icon icon="grommet-icons:form-next"></iconify-icon>
-                      </span>{" "}
-                      Contact
+                      Join Me
                     </Link>
                   </li>
                   <li className="tag">
@@ -105,6 +103,15 @@ export default function Footer() {
                         <iconify-icon icon="grommet-icons:form-next"></iconify-icon>
                       </span>{" "}
                       Blogs
+                    </Link>
+                  </li>
+                  <li className="tag">
+                    <Link to="/contact">
+                      {" "}
+                      <span>
+                        <iconify-icon icon="grommet-icons:form-next"></iconify-icon>
+                      </span>{" "}
+                      Contact
                     </Link>
                   </li>
                 </ul>
@@ -123,7 +130,7 @@ export default function Footer() {
                   </div>
                   <div>
                     <p>
-                      Kigali kicukiro
+                      Kigali Kacyiru
                     </p>
                   </div>
                 </div>
@@ -134,7 +141,7 @@ export default function Footer() {
                     </span>
                   </div>
                   <div>
-                    <p>+250 0785651518</p>
+                    <p>+250 785651518</p>
                   </div>
                 </div>
                 <div className="email flex-content">
@@ -143,14 +150,14 @@ export default function Footer() {
                       <iconify-icon icon="bi:envelope-fill"></iconify-icon>
                     </span>
                   </div>
-                  <div>umwizaureen@gmail.com</div>
+                  <div>umwizamaureen@gmail.com</div>
                 </div>
               </div>
             </div>
           </div>
           <div className="copyright">
             <p>
-              Copyright umwizaureen©2024 All rights reserved
+              Copyright umwizamaureen©2024 All rights reserved
             </p>
             <a href="#hero">
               <div className="back-top">

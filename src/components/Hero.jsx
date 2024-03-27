@@ -1,5 +1,5 @@
 import "../components/style/Hero.css";
-import helloImage from "../Images/main.jpg"
+import helloImage from "../Images/maureen.png";
 import { Link } from "react-router-dom";
 export default function Hero() {
   return (
@@ -21,7 +21,7 @@ export default function Hero() {
               
             </div>
                <Link to="/contact">
-              <button className="btns login" style={{marginTop:'0.2cm',width:'4cm'}}>Contact Us</button>
+              <button className="btns login" style={{marginTop:'0.2cm',width:'4cm'}}>Contact Me</button>
             </Link>
 
             <Link to="/blogs" >
