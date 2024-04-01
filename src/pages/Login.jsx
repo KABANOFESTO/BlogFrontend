@@ -2,10 +2,15 @@ import "../components/style/login.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false); // Track loading state
+
   const errors = () => {
     toast.error("Please enter valid credential", {
       position: "top-right",
@@ -31,21 +36,19 @@ export default function Login() {
       theme: "light",
     });
   };
-  ``;
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
+
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
 
   const handleApi = async () => {
+    setLoading(true); // Set loading to true when request starts
     try {
       const result = await axios.post(
-        // "https://postgresql-2c0g.onrender.com/PostgreSQL/API/users/login",
         `https://blogbeckend.onrender.com/PostgreSQL/API/users/login`,
         {
           email: email,
@@ -53,12 +56,10 @@ export default function Login() {
         }
       );
       localStorage.setItem("token", result.data.token);
-      // success();
       const role = result.data.users.role;
       console.log(role);
       if (role === "admin") {
         success();
-
         setTimeout(() => {
           navigate("/dashboard");
         }, 3000);
@@ -70,6 +71,8 @@ export default function Login() {
       }
     } catch (error) {
       errors();
+    } finally {
+      setLoading(false); // Set loading to false when request completes
     }
   };
 
@@ -77,9 +80,9 @@ export default function Login() {
     <>
       <div className="Login-section container">
         <div className="login-container">
-        <h1></h1>
+          <h1></h1>
           <h4>
-          Vist Me<span className="span"> Daily</span>!! Welcome Back
+            Vist Me<span className="span"> Daily</span>!! Welcome Back
           </h4>
 
           <input
@@ -94,7 +97,9 @@ export default function Login() {
             onChange={handlePassword}
             placeholder="Password"
           />
-          <button onClick={handleApi}>Login</button>
+          <button onClick={handleApi} disabled={loading}>
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
 
           <p>
             Don't have any account?{" "}

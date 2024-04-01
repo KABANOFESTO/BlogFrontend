@@ -1,10 +1,19 @@
-import axios from "axios";
 import "../components/style/signup.css";
-import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+
 export default function Signup() {
+  const navigate = useNavigate();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [profile, setProfile] = useState("");
+  const [loading, setLoading] = useState(false); // Track loading state
+
   const errors = () => {
     toast.error("Failed to create account", {
       position: "top-right",
@@ -18,106 +27,38 @@ export default function Signup() {
     });
   };
 
-  const navigate = useNavigate();
-  const [firstName, setfirstName] = useState("");
-  const [lastName, setlastName] = useState("");
-  const [profile, setprofile] = useState("");
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
-
-  const handlesignup = async (e) => {
-    e.preventDefault();
-
-    const signupinfo = new FormData();
-    signupinfo.append("firstName", firstName);
-    signupinfo.append("lastName", lastName);
-    signupinfo.append("email", email);
-    signupinfo.append("password", password);
-
-    const imageInput = document.getElementById("imageInput");
-    const profile = imageInput.files[0];
-    signupinfo.append("profile", profile);
-
-    try {
-      const response = await fetch(
-        "https://blogbeckend.onrender.com/PostgreSQL/API/users/signUp",
-
-        {
-          method: "POST",
-          body: signupinfo,
-        }
-      );
-      console.log(response);
-      if (response.status === 200 || response.status === 201) {
-        const responseData = await response.json();
-        console.log("response", responseData);
-        toast.success("User registered succesfully", {
-          position: "top-center",
-          autoClose: 3000,
-        });
-        setfirstName("");
-        setlastName("");
-        setemail("");
-        setpassword("");
-        setprofile("");
-      } else if (response.status === 400) {
-        console.log("Email already exists");
-        toast.warning("Email Already exists", {
-          position: "top-center",
-          autoClose: 3000,
-        });
-        setfirstName("");
-        setlastName("");
-        setemail("");
-        setpassword("");
-        setprofile("");
-      } else {
-        console.log("User registeration failed");
-        toast.error("User registeration failed", {
-          position: "top-center",
-        });
-        setfirstName("");
-        setlastName("");
-        setemail("");
-        setpassword("");
-      }
-    } catch (error) {
-      console.log("error", error);
-    }
+  const success = () => {
+    toast.success("User registered successfully", {
+      position: "top-center",
+      autoClose: 3000,
+    });
   };
-  //======= to be removed======
 
-  const handleFirstname = (e) => {
-    setFirstname(e.target.value);
-  };
-  const handleLastname = (e) => {
-    setLastname(e.target.value);
-  };
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
   const handleRegister = async () => {
+    setLoading(true); // Set loading to true when request starts
     try {
+      const formData = new FormData();
+      formData.append("firstName", firstName);
+      formData.append("lastName", lastName);
+      formData.append("email", email);
+      formData.append("password", password);
+      formData.append("profile", profile);
+
       const result = await axios.post(
         "https://blogbeckend.onrender.com/PostgreSQL/API/users/signUp",
-        {
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          password: password,
-        }
+        formData
       );
-      alert("User created successfully");
+      success();
       console.log(result.data);
       navigate("/Login");
     } catch (err) {
       errors();
       console.error(err);
+    } finally {
+      setLoading(false); // Set loading to false when request completes
     }
   };
+
   return (
     <>
       <div className="sign-section container">
@@ -128,38 +69,37 @@ export default function Signup() {
           <input
             type="text"
             value={firstName}
-            onChange={(e) => setfirstName(e.target.value)}
+            onChange={(e) => setFirstName(e.target.value)}
             placeholder="First Name"
           />
           <input
             type="text"
             value={lastName}
-                onChange={(e) => setlastName(e.target.value)}
+            onChange={(e) => setLastName(e.target.value)}
             placeholder="Last Name"
           />
           <input
             type="email"
             value={email}
-            onChange={(e) => setemail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
           />
           <input
             type="password"
             value={password}
-            onChange={(e) => setpassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
           />
           <input
-                type="file"
-                className="file_img"
-                onChange={(e) => {
-                  const file = e.target.files[0];
-                  setprofile(file);
-                }}
-              />
-          <button onClick={handleRegister}>Create Account</button>
+            type="file"
+            className="file_img"
+            onChange={(e) => setProfile(e.target.files[0])}
+          />
+          <button onClick={handleRegister} disabled={loading}>
+            {loading ? 'Creating Account...' : 'Create Account'}
+          </button>
           <p>
-            Already have account?{" "}
+            Already have an account?{" "}
             <Link to="/Login">
               <span className="link">Login Here</span>
             </Link>

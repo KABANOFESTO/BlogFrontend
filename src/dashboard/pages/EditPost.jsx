@@ -9,6 +9,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 
 function EditPost() {
+  const [loading, setLoading] = useState(false); // State to track loading status
+
   const errors = () => {
     toast.error("Failed to create post", {
       position: "top-right",
@@ -46,6 +48,7 @@ function EditPost() {
 
   function handleUpdate(event) {
     event.preventDefault();
+    setLoading(true); // Set loading to true when the request starts
     const formData = new FormData();
     formData.append("postImage", data.postImage);
     formData.append("postTitle", data.postTitle);
@@ -63,7 +66,19 @@ function EditPost() {
         }
       )
       .then((res) => {
+        setLoading(false); // Set loading to false when the request is complete
         success();
+        console.log(res.data.posts)
+
+        localStorage.removeItem("postsData");
+        localStorage.removeItem("blogData");
+
+        const data = res.data.posts.sort((a, b) => b.id - a.id);
+        localStorage.setItem("blogData", JSON.stringify(data));
+
+        localStorage.setItem("postsData", JSON.stringify(data));
+
+
       });
   }
   const navigate = useNavigate("");
@@ -123,12 +138,13 @@ function EditPost() {
             </div>
           </div>
           <div className="modal-footer">
-            <button name="submit">Update</button>
+            <button name="submit" disabled={loading}>{loading ? 'Updating...' : 'Update'}</button> {/* Disable the button when loading */}
             <button
               onClick={() => {
                 navigate("/post");
               }}
               id="cancelbtn"
+              disabled={loading} // Disable the button when loading
             >
               Cancel
             </button>

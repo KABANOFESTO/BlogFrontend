@@ -4,31 +4,26 @@
   display: flex;
   flex-direction: column;
 }
-
 /* added styles*/
 
-#readmoree {
+#readmoree{
   color: blue;
 }
-
-.likeviewcomments {
+.likeviewcomments{
   display: flex;
   gap: 30px;
 }
-
 .notification-icon,
 .email-icon {
   font-size: 24px;
   cursor: pointer;
 }
-
 .view-icon-container,
 .like-icon-container,
 .mean-icon-container {
   position: relative;
   padding-top: 10px;
 }
-
 .view-counter,
 .like-counter,
 .mean-counter {
@@ -46,29 +41,24 @@
   padding: 5px 6px;
   border-radius: 10px;
 }
-
-.postedby {
+.postedby{
   display: flex;
   gap: 10px;
 }
-
-.postedby #profile {
+.postedby #profile{
   width: 50px;
   height: 50px;
   border-radius: 25px;
 }
-
-.postedby #fullname {
+.postedby #fullname{
   padding-top: 10px;
   color: grey;
 }
-
 /* end*/
 .post-img {
   overflow: hidden;
   height: 400px;
 }
-
 .post-img img {
   width: 100%;
   height: 100%;
@@ -76,7 +66,6 @@
   background-position: center;
   object-fit: cover;
 }
-
 .topper {
   background: var(--yellow);
   display: block;
@@ -87,7 +76,6 @@
   width: 138px;
   z-index: 1;
 }
-
 .topper-content {
   display: flex;
   justify-content: space-around;
@@ -96,21 +84,17 @@
   align-items: center;
   overflow: hidden;
 }
-
 .topper .day {
   font-size: 36px;
 }
-
 .topper .two {
   float: right;
   color: rgb(68, 67, 67);
   font-size: 14px;
 }
-
 .post-body {
   padding: 24px;
 }
-
 .post-title h1 {
   color: var(--heading);
   font-size: 20px;
@@ -122,12 +106,10 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
-
 .post-title h1:hover {
   opacity: 0.7;
   cursor: pointer;
 }
-
 .post-desc {
   color: rgb(128, 128, 128);
   font-weight: 400;
@@ -142,12 +124,10 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-
 .post-footer {
   display: flex;
   gap: 10px;
 }
-
 .post-footer p {
   font-size: 12px;
   font-weight: 400;
@@ -156,7 +136,6 @@
   letter-spacing: 1px;
   cursor: pointer;
 }
-
 .post-footer p:hover {
   color: var(--heading);
 }
@@ -164,16 +143,13 @@
 .Articles-section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 120px;
+  column-gap: 10px;
   row-gap: 20px;
-  justify-content: center;
 }
-
 /* ============================= Responsiveness for Article page====================== */
 @media screen and (max-width: 769px) {
   .Articles-section {
     grid-template-columns: 1fr;
     padding-bottom: 20px;
-    justify-content: center;
   }
 }

@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "../components/style/modal.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
-import { useState } from "react";
 import axios from "axios";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
@@ -21,6 +20,7 @@ function CreatePost({ closeModal }) {
       theme: "light",
     });
   };
+
   const success = () => {
     toast.success("Post created Successfully", {
       position: "top-right",
@@ -33,11 +33,15 @@ function CreatePost({ closeModal }) {
       theme: "light",
     });
   };
+
   const [post, setPost] = useState({
     postImage: "",
     postTitle: "",
     postContent: "",
   });
+
+  const [loading, setLoading] = useState(false); // Track loading state
+
   const handleInput = (event) => {
     if (event.target.name === "postImage") {
       setPost({ ...post, postImage: event.target.files[0] });
@@ -46,7 +50,7 @@ function CreatePost({ closeModal }) {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("postImage", post.postImage);
@@ -55,8 +59,9 @@ function CreatePost({ closeModal }) {
 
     const apiKey = localStorage.getItem("token");
 
-    axios
-      .post(
+    try {
+      setLoading(true); // Set loading to true when request starts
+      const response = await axios.post(
         "https://blogbeckend.onrender.com/PostgreSQL/API/posts/add",
         formData,
         {
@@ -65,15 +70,30 @@ function CreatePost({ closeModal }) {
             "Content-Type": "multipart/form-data",
           },
         }
-      )
-      .then((response) => {
-        console.log(response);
-        success();
-      })
-      .catch((error) => {
-        console.error(error);
-        errors();
-      });
+      );
+      console.log(response);
+      success();
+
+      // Update localStorage
+
+
+      localStorage.removeItem("postsData");
+      const data1 = response.data.data.sort((a, b) => b.id - a.id);
+      localStorage.setItem("postsData", JSON.stringify(data1));
+
+
+
+        localStorage.removeItem("blogData");
+        const data = response.data.data.sort((a, b) => b.id - a.id);
+        localStorage.setItem("blogData", JSON.stringify(data));
+
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+      errors();
+    } finally {
+      setLoading(false); // Set loading to false when request completes
+    }
   };
 
   return (
@@ -85,14 +105,11 @@ function CreatePost({ closeModal }) {
           </div>
           <div className="modal-title">
             <h2>Create a post here!</h2>
-            {/* <Link to={`/addvideo/`}>
-  <p>add video post</p>
-</Link> */}
           </div>
           <form action="#" onSubmit={handleSubmit}>
             <div className="modal-body">
               <div>
-                <label class="file">
+                <label className="file">
                   <input
                     type="file"
                     id="file"
@@ -101,7 +118,7 @@ function CreatePost({ closeModal }) {
                     aria-label="File browser example"
                     onChange={handleInput}
                   />
-                  <span class="file-custom"></span>
+                  <span className="file-custom"></span>
                 </label>
               </div>
               <div>
@@ -114,7 +131,7 @@ function CreatePost({ closeModal }) {
               </div>
               <div className="editor">
                 <CKEditor
-                placeholder={"Enter post descriptions"}
+                  placeholder={"Enter post descriptions"}
                   editor={ClassicEditor}
                   data={setPost?.postContent}
                   onReady={(editor) => {
@@ -129,7 +146,9 @@ function CreatePost({ closeModal }) {
               </div>
             </div>
             <div className="modal-footer">
-              <button name="submit">Publish</button>
+              <button name="submit" disabled={loading}>
+              {loading ? 'loading.....' : 'publish'}
+              </button>
               <button id="cancelbtn" onClick={() => closeModal(false)}>
                 Cancel
               </button>
