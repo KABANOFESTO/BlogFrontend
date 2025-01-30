@@ -7,7 +7,7 @@ export default function Dashboard() {
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get(
-        "https://blogbeckend.onrender.com/PostgreSQL/API/posts/get/all"
+        "https://blog-backend-6y0w.onrender.com/PostgreSQL/API/posts/get/all"
       );
       const data = response.data.data;
       setBlogs(data);
@@ -20,7 +20,7 @@ export default function Dashboard() {
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get(
-        "https://blogbeckend.onrender.com/PostgreSQL/API/users/get/users"
+        "https://blog-backend-6y0w.onrender.com/PostgreSQL/API/users/get/users"
       );
       const data = response.data.data;
       setUsers(data);
@@ -33,7 +33,7 @@ export default function Dashboard() {
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get(
-        "https://blogbeckend.onrender.com/PostgreSQL/API/comments/all"
+        "https://blog-backend-6y0w.onrender.com/PostgreSQL/API/comments/all"
       );
       const data = response.data.data;
       setComments(data);
@@ -45,7 +45,7 @@ export default function Dashboard() {
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get(
-        "https://blogbeckend.onrender.com/PostgreSQL/API/replies/all"
+        "https://blog-backend-6y0w.onrender.com/PostgreSQL/API/replies/all"
       );
       const data = response.data.data;
       setReply(data);

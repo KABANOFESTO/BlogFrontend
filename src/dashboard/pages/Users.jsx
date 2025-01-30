@@ -10,7 +10,7 @@ export const Users = () => {
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get(
-        "https://blogbeckend.onrender.com/PostgreSQL/API/users/get/users"
+        "https://blog-backend-6y0w.onrender.com/PostgreSQL/API/users/get/users"
       );
       const data = response.data.data;
       setData(data);
