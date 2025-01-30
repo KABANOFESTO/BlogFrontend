@@ -31,7 +31,7 @@ export default function Post() {
         let postsData = localStorage.getItem("postsData");
         if (!postsData) {
           const response = await axios.get(
-            "https://blogbeckend.onrender.com/PostgreSQL/API/posts/get/all"
+            "https://blog-backend-6y0w.onrender.com/PostgreSQL/API/posts/get/all"
           );
           postsData = response.data.data.sort((a, b) => b.id - a.id);;
           localStorage.setItem("postsData", JSON.stringify(postsData));
@@ -55,7 +55,7 @@ export default function Post() {
     if (conf) {
       try {
         const response = await axios.delete(
-          `https://blogbeckend.onrender.com/PostgreSQL/API/posts/delete/${id}`, {
+          `https://blog-backend-6y0w.onrender.com/PostgreSQL/API/posts/delete/${id}`, {
             headers: {
               authorization: `Bearer ${token}`,
             },

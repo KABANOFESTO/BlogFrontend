@@ -23,7 +23,7 @@ export default function Contact() {
     setLoading(true); // Set loading to true on form submission
 
     try {
-      const response = await axios.post('https://blogbeckend.onrender.com/PostgreSQL/API/mesages/add', formData);
+      const response = await axios.post('https://blog-backend-6y0w.onrender.com/PostgreSQL/API/mesages/add', formData);
       toast.success(response.data.message);
       setFormData({
         names: '',

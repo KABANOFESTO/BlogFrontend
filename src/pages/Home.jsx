@@ -10,7 +10,7 @@ export default function Home() {
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get(
-        "https://blogbeckend.onrender.com/PostgreSQL/API/posts/get/all"
+        "https://blog-backend-6y0w.onrender.com/PostgreSQL/API/posts/get/all"
       );
       const data = response.data.data;
       setBlogs(data);

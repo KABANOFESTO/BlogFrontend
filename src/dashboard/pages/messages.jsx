@@ -13,7 +13,7 @@ export default function Post() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://blogbeckend.onrender.com/PostgreSQL/API/mesages/get/all');
+        const response = await axios.get('https://blog-backend-6y0w.onrender.com/PostgreSQL/API/mesages/get/all');
         // Sort messages by id in ascending order
         const sortedMessages = response.data.messages.sort((a, b) => b.id - a.id);
         setMessages(sortedMessages);
@@ -32,7 +32,7 @@ export default function Post() {
   const handleDelete = async (id) => {
     if (window.confirm('Do you want to delete this message?')) {
       try {
-        await axios.delete(`https://blogbeckend.onrender.com/PostgreSQL/API/mesages/delete/${id}`);
+        await axios.delete(`https://blog-backend-6y0w.onrender.com/PostgreSQL/API/mesages/delete/${id}`);
         success();
         setMessages(messages.filter((message) => message.id !== id));
       } catch (error) {

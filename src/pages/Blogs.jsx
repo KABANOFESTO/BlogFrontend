@@ -14,7 +14,7 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://blogbeckend.onrender.com/PostgreSQL/API/posts/get/all"
+          "https://blog-backend-6y0w.onrender.com/PostgreSQL/API/posts/get/all"
         );
         const data = response.data.data.sort((a, b) => b.id - a.id);
         localStorage.setItem("blogData", JSON.stringify(data));
@@ -42,13 +42,13 @@ export default function Home() {
     const checkForUpdates = async () => {
       try {
         const response = await axios.head(
-          "https://blogbeckend.onrender.com/PostgreSQL/API/posts/get/all"
+          "https://blog-backend-6y0w.onrender.com/PostgreSQL/API/posts/get/all"
         );
         const serverLastModified = new Date(response.headers["last-modified"]).getTime();
         if (serverLastModified > lastFetchTime) {
           // If server data is updated after the last fetch, fetch new data
           const fetchDataResponse = await axios.get(
-            "https://blogbeckend.onrender.com/PostgreSQL/API/posts/get/all"
+            "https://blog-backend-6y0w.onrender.com/PostgreSQL/API/posts/get/all"
           );
           const newData = fetchDataResponse.data.data;
           localStorage.setItem("blogData", JSON.stringify(newData));

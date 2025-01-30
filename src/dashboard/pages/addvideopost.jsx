@@ -64,7 +64,7 @@ function EditPost() {
     try {
       setLoading(true); // Set loading to true when request starts
       const response = await axios.post(
-        "https://blogbeckend.onrender.com/PostgreSQL/API/posts/upload",
+        "https://blog-backend-6y0w.onrender.com/PostgreSQL/API/posts/upload",
         formData,
         {
           headers: {

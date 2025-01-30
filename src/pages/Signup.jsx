@@ -45,7 +45,7 @@ export default function Signup() {
       formData.append("profile", profile);
 
       const result = await axios.post(
-        "https://blogbeckend.onrender.com/PostgreSQL/API/users/signUp",
+        "https://blog-backend-6y0w.onrender.com/PostgreSQL/API/users/signUp",
         formData
       );
       success();

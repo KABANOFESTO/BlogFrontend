@@ -51,7 +51,7 @@ const BlogSingle = () => {
   
   const displayAll = async () => {
     const response = await fetch(
-      `https://blogbeckend.onrender.com/PostgreSQL/API/posts/single/post/${id}`
+      `https://blog-backend-6y0w.onrender.com/PostgreSQL/API/posts/single/post/${id}`
     );
     const res = await response.json();
     setBlogData(res.data);
@@ -69,7 +69,7 @@ const BlogSingle = () => {
   useEffect(() => {
     const Relatedpost = async () => {
       await fetch(
-        `https://blogbeckend.onrender.com/PostgreSQL/API/posts/get/all`
+        `https://blog-backend-6y0w.onrender.com/PostgreSQL/API/posts/get/all`
       )
         .then((response) => response.json())
         .then((res) => {
@@ -93,7 +93,7 @@ const BlogSingle = () => {
     }   else{
       try {
         const response = await axios.post(
-          `https://blogbeckend.onrender.com/PostgreSQL/API/comments/add/${id}`,
+          `https://blog-backend-6y0w.onrender.com/PostgreSQL/API/comments/add/${id}`,
           formData,
           {
             headers: {

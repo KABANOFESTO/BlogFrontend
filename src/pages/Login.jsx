@@ -49,7 +49,7 @@ export default function Login() {
     setLoading(true); // Set loading to true when request starts
     try {
       const result = await axios.post(
-        `https://blogbeckend.onrender.com/PostgreSQL/API/users/login`,
+        `https://blog-backend-6y0w.onrender.com/PostgreSQL/API/users/login`,
         {
           email: email,
           password: password,
