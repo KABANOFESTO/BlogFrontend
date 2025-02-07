@@ -3,105 +3,118 @@ import HeroPage from "../components/HeroPage";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "../components/style/contact.css";
+// import "../components/style/pegination.css";
 import PropagateLoader from "react-spinners/PropagateLoader";
 
 export default function Home() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [lastFetchTime, setLastFetchTime] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("FAITH & SPIRITUALITY");
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 3;
+
+  const categories = [
+    "FAITH & SPIRITUALITY",
+    "PERSONAL GROWTH & SELF DISCOVERY",
+    "KINDNESS & COMPASSION",
+    "VLOG"
+  ];
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchBlogsByCategory = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(
-          "https://blog-backend-6y0w.onrender.com/PostgreSQL/API/posts/get/all"
+          `http://localhost:2400/PostgreSQL/API/posts/category/${encodeURIComponent(activeCategory)}`
         );
-        const data = response.data.data.sort((a, b) => b.id - a.id);
-        localStorage.setItem("blogData", JSON.stringify(data));
-        setBlogs(data);
-        setLoading(false);
-        setLastFetchTime(Date.now()); // Record the timestamp of the last data fetch
+        setBlogs(response.data.data.sort((a, b) => b.id - a.id));
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching category data:", error);
+      } finally {
         setLoading(false);
       }
     };
 
-    const storedData = localStorage.getItem("blogData");
-    if (storedData) {
-      const parsedData = JSON.parse(storedData);
-      setBlogs(parsedData);
-      setLoading(false);
-      setLastFetchTime(Date.now()); // Update the last fetch time from local storage
-    } else {
-      fetchData();
-    }
-  }, []);
+    fetchBlogsByCategory();
+  }, [activeCategory]);
 
-  useEffect(() => {
-    const checkForUpdates = async () => {
-      try {
-        const response = await axios.head(
-          "https://blog-backend-6y0w.onrender.com/PostgreSQL/API/posts/get/all"
-        );
-        const serverLastModified = new Date(response.headers["last-modified"]).getTime();
-        if (serverLastModified > lastFetchTime) {
-          // If server data is updated after the last fetch, fetch new data
-          const fetchDataResponse = await axios.get(
-            "https://blog-backend-6y0w.onrender.com/PostgreSQL/API/posts/get/all"
-          );
-          const newData = fetchDataResponse.data.data;
-          localStorage.setItem("blogData", JSON.stringify(newData));
-          setBlogs(newData);
-          setLastFetchTime(Date.now()); // Update the last fetch time
-        }
-      } catch (error) {
-        console.error("Error checking for updates:", error);
-      }
-    };
+  const totalPages = Math.ceil(blogs.length / postsPerPage);
+  const currentPosts = blogs.slice(
+    (currentPage - 1) * postsPerPage,
+    currentPage * postsPerPage
+  );
 
-    const intervalId = setInterval(checkForUpdates, 60000); // Check for updates every minute
-
-    return () => clearInterval(intervalId);
-  }, [lastFetchTime]);
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    document.querySelector('.Articles-section').scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
 
   return (
     <>
-      <HeroPage title={"Blogs"} />
+      <HeroPage title="Blogs" />
       {loading && (
         <div className="Loader container">
-          <PropagateLoader
-            color="#ffd369"
-            cssOverride={{}}
-            loading
-            size={20}
-            speedMultiplier={1}
-          />
+          <PropagateLoader color="#ffd369" loading size={20} />
         </div>
       )}
+
       <div className="container">
-        <div className="row">
-          <div className="col-md-12"></div>
+        <div className="blog-categories">
+          {categories.map((category) => (
+            <button
+              key={category}
+              className={`category-btn ${activeCategory === category ? 'active' : ''}`}
+              onClick={() => {
+                setActiveCategory(category);
+                setCurrentPage(1);
+              }}
+            >
+              {category}
+            </button>
+          ))}
         </div>
       </div>
+
       <br />
       <div className="Articles-section container">
-        {blogs.map((post, index) => (
-          <ArticleBlog
-            key={index}
-            Id={post.id}
-            title={post.postTitle}
-            image={post.postImage}
-            desc={post.postContent}
-            profile={post.postedBy.profile}
-            fullname={post.postedBy.firstName + " " + post.postedBy.lastName}
-            views={post.views}
-            likes={post.allLikes}
-            comments={post.allComents}
-            data={post.createdAt}
-          />
-        ))}
+        {currentPosts.length > 0 ? (
+          currentPosts.map((post) => (
+            <ArticleBlog
+              key={post.id}
+              Id={post.id}
+              title={post.postTitle}
+              image={post.postImage}
+              desc={post.postContent}
+              profile={post.postedBy.profile}
+              fullname={`${post.postedBy.firstName} ${post.postedBy.lastName}`}
+              views={post.views}
+              likes={post.allLikes}
+              comments={post.allComents}
+              data={post.createdAt}
+            />
+          ))
+        ) : (
+          <div className="no-posts-message">
+            <h3>No posts available in this category yet!</h3>
+            <p>Stay tuned for upcoming content.</p>
+          </div>
+        )}
       </div>
+
+      {totalPages > 1 && (
+        <div className="pagination-dots">
+          {[...Array(totalPages)].map((_, index) => (
+            <span
+              key={index}
+              className={`dot ${currentPage === index + 1 ? 'active' : ''}`}
+              onClick={() => handlePageChange(index + 1)}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 }

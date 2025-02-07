@@ -71,17 +71,6 @@ export default function Post() {
           <div className="manage-posts">
             <div className="title-container">
               <h1 className="title">Manage All Messages</h1>
-              <Link to={`/addvideo/`}>
-              <button style={{ margin: '0.2cm', border: '1px solid orange',color:'orange', backgroundColor: 'whitesmoke', padding: '0.1cm', borderRadius: '4px' }}>
-                <p>add video post</p>
-              </button>
-            </Link>
-
-            <Link to={`/messages/`}>
-              <button style={{ margin: '0.2cm', border: '1px solid orange',color:'orange', backgroundColor: 'whitesmoke', padding: '0.1cm', borderRadius: '4px' }}>
-                <p>view messages</p>
-              </button>
-            </Link>
             </div>
             <table id="customers">
               <thead>
