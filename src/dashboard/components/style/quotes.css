@@ -1,0 +1,254 @@
+.quotes-container {
+  min-height: 100vh;
+  padding: 2rem;
+  background: #f8f9fa;
+}
+
+.quotes-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .quotes-content {
+    grid-template-columns: 400px 1fr;
+  }
+}
+
+.quotes-form-wrapper {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.quotes-title {
+  color: #222831;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.quotes-subtitle {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.quotes-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  color: #222831;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 0.75rem;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #ffd369;
+  box-shadow: 0 0 0 3px rgba(255, 211, 105, 0.2);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-group select {
+  cursor: pointer;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.submit-button,
+.cancel-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-button {
+  background: linear-gradient(135deg, #ffd369, #ffb347);
+  color: #222831;
+  flex: 2;
+}
+
+.cancel-button {
+  background: #e9ecef;
+  color: #495057;
+  flex: 1;
+}
+
+.submit-button:hover,
+.cancel-button:hover {
+  transform: translateY(-2px);
+}
+
+.submit-button:hover {
+  box-shadow: 0 4px 12px rgba(255, 211, 105, 0.3);
+}
+
+.cancel-button:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Table Styles */
+.quotes-table-wrapper {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.quotes-table-container {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+}
+
+.quotes-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.quotes-table th,
+.quotes-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.quotes-table th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: #222831;
+}
+
+.quotes-table tr:last-child td {
+  border-bottom: none;
+}
+
+.quote-text-cell {
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.actions-cell {
+  white-space: nowrap;
+  width: 1%;
+}
+
+.edit-button,
+.delete-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-button {
+  background: #ffd369;
+  color: #222831;
+  margin-right: 0.5rem;
+}
+
+.delete-button {
+  background: #dc3545;
+  color: white;
+}
+
+.edit-button:hover,
+.delete-button:hover {
+  transform: translateY(-2px);
+}
+
+.edit-button:hover {
+  background: #ffb347;
+}
+
+.delete-button:hover {
+  background: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .quotes-container {
+    padding: 1rem;
+  }
+
+  .quotes-form-wrapper,
+  .quotes-table-wrapper {
+    padding: 1.5rem;
+  }
+
+  .quotes-title {
+    font-size: 1.5rem;
+  }
+
+  .quotes-table th,
+  .quotes-table td {
+    padding: 0.75rem;
+  }
+
+  .quote-text-cell {
+    max-width: 200px;
+  }
+}
+
+/* Toast Notification Styles */
+.Toastify__toast {
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.Toastify__toast--success {
+  background: #4caf50;
+}
+
+.Toastify__toast--error {
+  background: #f44336;
+}

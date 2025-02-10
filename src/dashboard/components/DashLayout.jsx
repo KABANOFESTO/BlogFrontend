@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import "./style/dashlayout.css";
-import { FaHome, FaNewspaper, FaUsers, FaVideo, FaInbox, FaSignOutAlt } from "react-icons/fa";
+import { FaHome, FaNewspaper, FaUsers, FaVideo, FaInbox, FaSignOutAlt, FaQuoteRight } from "react-icons/fa";
 
 export default function DashLayout() {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
@@ -11,6 +11,7 @@ export default function DashLayout() {
   const menuItems = [
     { path: "/dashboard", icon: <FaHome />, label: "Dashboard" },
     { path: "/dashboard/post", icon: <FaNewspaper />, label: "Posts" },
+    { path: "/dashboard/quotes", icon: <FaQuoteRight />, label: "Quotes" },
     { path: "/dashboard/users", icon: <FaUsers />, label: "Users" },
     { path: "/dashboard/messages", icon: <FaInbox />, label: "Messages" }
   ];
@@ -27,7 +28,7 @@ export default function DashLayout() {
   return (
     <div className="dashboard-container">
       <div className={`dashboard-sidebar ${isMenuOpen ? 'open' : 'closed'}`}>
-        <div className="sidebar-header">
+        <div className="sidebar-header" >
           <h2>Moreen</h2>
           <button className="menu-toggle" onClick={toggleMenu}>
             <span></span>

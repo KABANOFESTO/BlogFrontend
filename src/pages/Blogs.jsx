@@ -25,7 +25,7 @@ export default function Home() {
       setLoading(true);
       try {
         const response = await axios.get(
-          `http://localhost:2400/PostgreSQL/API/posts/category/${encodeURIComponent(activeCategory)}`
+          `https://blog-backend-6y0w.onrender.com/PostgreSQL/API/posts/category/${encodeURIComponent(activeCategory)}`
         );
         setBlogs(response.data.data.sort((a, b) => b.id - a.id));
       } catch (error) {

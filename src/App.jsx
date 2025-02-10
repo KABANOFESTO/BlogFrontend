@@ -19,6 +19,8 @@ import Video from "./dashboard/pages/addvideopost";
 import Message from "./dashboard/pages/messages";
 import { Users } from "./dashboard/pages/Users";
 import CreatePost from "./dashboard/pages/CreatePost";
+import Quotes from "./dashboard/pages/Quotes";
+import PublicQuotes from "./pages/Quotes";
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="login" element={<Login />} />
         <Route path="blogs" element={<Blogs />} />
+        <Route path="quotes" element={<PublicQuotes />} />
         <Route path="signup" element={<Signup />} />
         <Route path="blogSingle/:id" element={<BlogSingle />} />
       </Route>
@@ -45,6 +48,7 @@ function App() {
         <Route path="messages" element={<Message />} />
         <Route path="inbox" element={<Inbox />} />
         <Route path="users" element={<Users />} />
+        <Route path="quotes" element={<Quotes />} />
       </Route>
 
       {/* 404 Route */}
