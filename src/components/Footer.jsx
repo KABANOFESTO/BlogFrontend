@@ -9,17 +9,14 @@ export default function Footer() {
             <div className="readit">
               <div className="title">
                 <h4 className="mark">
-                  Visit Me<span className="span"> Daily</span>.
+                  Heartfelt<span className="span"> Growth</span>
                 </h4>
               </div>
               <div className="readit-body">
                 <p style={{ textAlign: "" }}>
-                  We're delighted to have you here.
-                  Whether you're exploring our
-                  latest blog posts or seeking
-                  valuable insights, we hope your
-                  journey with us is both
-                  informative and enjoyable.
+                  Life’s journey can sometimes feel overwhelming, but with
+                  kindness, faith,and a commitment to growth, we believe
+                  everyone can unlock their full potential.
                 </p>
               </div>
               <div className="readit-footer">
@@ -46,9 +43,9 @@ export default function Footer() {
                     </a>
                   </div>
                   <div className="youtube">
-                    <a href="#">
+                    <a href="https://www.youtube.com/@maureenumwiza5056">
                       <span>
-                      <iconify-icon icon="bi:youtube"></iconify-icon>
+                        <iconify-icon icon="bi:youtube"></iconify-icon>
                       </span>
                     </a>
                   </div>

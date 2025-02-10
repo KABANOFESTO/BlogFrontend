@@ -4,25 +4,6 @@ import { useState } from "react";
 import Image from "../Images/picv.jpg";
 import "../components/style/about.css";
 export default function Team() {
-  const [paragraphy, setParagraphy] = useState(
-    `A mission statement is a short summary of an organization’s core purpose, focus, and aims. This usually includes a brief description of what the organization does and its key objectives.`
-  );
-
-  const handleMission = () => {
-    setParagraphy(
-      `A mission statement is a short summary of an organization’s core purpose, focus, and aims. This usually includes a brief description of what the organization does and its key objectives.`
-    );
-  };
-  const handleVision = () => {
-    setParagraphy(
-      `A vision statement is a short description of an organization’s aspirations and the wider impact it aims to create. It should be a guiding beacon to everyone within the organization and something which underpins internal decision-making and determines the intended direction of the organization.`
-    );
-  };
-  const handleValue = () => {
-    setParagraphy(
-      `Everything we do – from our Conferences to our TED Talks to the projects sparked by The Audacious Project, from the global TEDx community to the TED-Ed lesson series – is driven by this goal: How can we best spread great ideas?`
-    );
-  };
 
   return (
     <>
@@ -40,30 +21,22 @@ export default function Team() {
             {/* <img src={video1} alt="our services" /> */}
             <img src={Image} alt="our services" />
           </div>
-          <div className="about-info">
-            <div className="about-heading">
-              <p className="sub-heading">Visit Me<span className="span"> Daily</span>.</p>
-              <h2>We give you the best articles you want.</h2>
+          <div className="about-info" >
+            <div className="about-heading" style={{alignItems:"center"}}>
+              <p className="sub-heading">Heartfelt<span className="span"> Growth</span></p>
+              <h2>Hello Welcome.
+              </h2>
               <p className="about-desc">
-                Far far away, behind the word mountains, far from the countries
-                Vokalia and Consonantia
+                My name is Maureen UMWIZA and am deeply passionate about personal <br />
+                commitment to growth, we believe everyone can unlock their full potential. <br />
+                growth, kindness, and the power of faith. I believe in embracing our authentic selves,<br />
+                cultivating compassion, and living with purpose. Through Heartfelt Growth, I aim to<br />
+                inspire others to grow positively, connect with their true potential, and spread love and  kindness in everything they do.
               </p>
-            </div>
-            <div className="tabulation">
-              <ul>
-                <li onClick={handleMission}>My Mission</li>
-                <li onClick={handleVision}>My Vision</li>
-                <li onClick={handleValue}>My Value</li>
-              </ul>
-            </div>
-            <div className="tab-content">
-              <div className="tab-pane">
-                <p>{paragraphy}</p>
-              </div>
             </div>
           </div>
         </div>
-     
+
       </div>
     </>
   );
